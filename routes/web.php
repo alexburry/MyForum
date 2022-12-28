@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/test', function () {
+    return 'test';
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -35,6 +39,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/forums', [SubforumController::class, 'index'])->name('subforums.index');
-Route::get('/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
-Route::get('/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
+Route::get('/forums/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
+Route::get('/forums/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
 require __DIR__.'/auth.php';
