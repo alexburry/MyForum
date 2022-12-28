@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubforumController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +35,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/forums', [SubforumController::class, 'index'])->name('subforums.index');
+Route::get('/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
+Route::get('/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
 require __DIR__.'/auth.php';

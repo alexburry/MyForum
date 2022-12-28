@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 use App\Models\Subforum;
 
-class SubforumController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class SubforumController extends Controller
      */
     public function index()
     {
-        $subforums = Subforum::get();
-        return view('subforums.index', ['subforums' => $subforums]);
+        //
     }
 
     /**
@@ -36,7 +36,21 @@ class SubforumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:1000',
+            'user_id' => 'required|integer',
+        ]);
+
+        $p = new Post;
+        $p->title = $validatedData['title'];
+        $p->content = $validatedData['content'];
+        $p->user_id = $validatedData['user_id'];
+        $p->save();
+
+        session()->flash('message', 'Post was created.');
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -45,9 +59,9 @@ class SubforumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Subforum $subforum)
+    public function show(Subforum $subforum, Post $post)
     {
-        return view('subforums.show', ['subforum' => $subforum]);
+        return view('posts.show', ['subforum' => $subforum, 'post' => $post]);
     }
 
     /**
