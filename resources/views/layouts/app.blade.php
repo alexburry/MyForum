@@ -1,3 +1,10 @@
+{{-- <!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>MyForum -  --}}
+
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -28,8 +35,9 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                @yield('content')
+                {{-- {{ $slot }} --}}
             </main>
         </div>
     </body>
-</html>
+</html> 
