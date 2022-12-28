@@ -24,9 +24,6 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/test', function () {
-    return 'test';
-});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -38,7 +35,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/forums', [SubforumController::class, 'index'])->name('subforums.index');
-Route::get('/forums/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
-Route::get('/forums/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
+Route::get('/f', [SubforumController::class, 'index'])->name('subforums.index');
+
+Route::get('/f/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
+Route::get('/f/{subforum}/make-post', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('posts.create');
+    //return view('posts.create');
+Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+
+Route::get('/f/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
+
+
+
+
 require __DIR__.'/auth.php';

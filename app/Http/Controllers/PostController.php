@@ -23,9 +23,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Subforum $subforum)
     {
-        //
+        return view('posts.create' , ['subforum' => $subforum]);
     }
 
     /**
@@ -40,17 +40,19 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:1000',
             'user_id' => 'required|integer',
+            'subforum_id' => 'required|integer',
         ]);
 
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
         $p->user_id = $validatedData['user_id'];
+        $p->subforum_id = $validatedData['subforum_id'];
         $p->save();
 
         session()->flash('message', 'Post was created.');
 
-        return redirect()->route('posts.index');
+        return redirect()->route('subforums.index');
     }
 
     /**
