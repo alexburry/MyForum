@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Subforum;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +24,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Subforum $subforum)
+    public function create(Subforum $subforum, Post $post)
     {
-        return view('posts.create' , ['subforum' => $subforum]);
+        //dd($post);
+        return view('comments.create', ['post' => $post]);
     }
 
     /**
@@ -34,24 +36,23 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Subforum $subforum)
     {
         $validatedData = $request->validate([
-            'title' => 'required|max:255',
             'content' => 'required|max:1000',
             'user_id' => 'required|integer',
-            'subforum_id' => 'required|integer',
+            'post_id' => 'required|integer',
         ]);
 
-        $p = new Post;
-        $p->title = $validatedData['title'];
+        $p = new Comment;
         $p->content = $validatedData['content'];
         $p->user_id = $validatedData['user_id'];
-        $p->subforum_id = $validatedData['subforum_id'];
+        $p->post_id = $validatedData['post_id'];
         $p->save();
 
         session()->flash('message', 'Post was created.');
 
+        //return redirect()->route('subforum.posts.show', ['post' => $validatedData['post_id']]);
         return redirect()->route('subforums.index');
     }
 
@@ -61,10 +62,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Subforum $subforum, Post $post)
+    public function show($id)
     {
-        // dd($post);
-        return view('posts.show', ['subforum' => $subforum, 'post' => $post]);
+        //
     }
 
     /**

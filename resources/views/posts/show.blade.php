@@ -10,8 +10,8 @@
         </h2>
     </x-slot>
     
-  
-    {{-- <a href="{{ route('comments.create', ['post'=>$post]) }}">Add Comment</a> --}}
+    {{-- {{ dd($post)}} --}}
+    <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}">Add Comment</a>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

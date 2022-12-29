@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubforumController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,8 +44,7 @@ Route::get('/f/{subforum}/make-post', [PostController::class, 'create'])->middle
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 
 Route::get('/f/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
-
-
-
+Route::get('/f/{subforum}/{post}/make-comment', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comments.create');
+Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
 
 require __DIR__.'/auth.php';
