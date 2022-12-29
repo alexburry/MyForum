@@ -1,11 +1,26 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "en">
     <head>
-        <title>MyForum -  --}}
+        <title>@yield('title')</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" >
+    </head> 
+<body>
+    </header>
+        <div class = "nav">
+            @include('layouts.navigation')
+        </div>
+    <header>
+    
+    <main>
+        <div>
+            @yield('content')
+        </div>
+    </main>
+</body>
+</html>
 
 
-
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -37,7 +52,7 @@
             <main>
                 @yield('content')
                 {{-- {{ $slot }} --}}
-            </main>
+            {{-- </main>
         </div>
     </body>
-</html> 
+</html>  --}}

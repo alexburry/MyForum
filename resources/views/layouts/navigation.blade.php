@@ -1,4 +1,45 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav>
+<div class="nav-bar">
+    <div>
+        <div>
+            <a href="{{ route('dashboard') }}"" :active="request()->routeIs('dashboard')">Dashboard</a>
+        </div>
+        <div>
+            <a href="{{ route('subforums.index') }}" :active="request()->routeIs('subforums.index')">Subforums</a>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @if (Route::has('login'))
+                <div>
+                    @auth
+                    <div>
+                        <a href="{{ route('profile.edit') }}">Profile</a>
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href={{ route('logout') }} " onclick="event.preventDefault();
+                                this.closest('form').submit();">Log Out</a>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <div>
+                <a href="{{ route('login') }}">Log in</a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                    @endauth
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
+</nav>
+
+{{-- <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -82,7 +123,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Responsive Navigation Menu -->
     {{-- <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">

@@ -1,21 +1,13 @@
-<x-app-layout>
-    @section('content')
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Subforums') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                @foreach($subforums as $subforum)
-                    <div class="p-6 text-gray-900">
-                        <a href="{{ route('subforums.show', ['subforum' => $subforum]) }}">{{ $subforum->name }}</a>
-                    </div>
-                @endforeach
+@extends('layouts.app')
+@section('title', 'Subforums')
+ 
+@section('content')    
+    <div>
+        @foreach($subforums as $subforum)
+            <div class="forum">
+               <a href="{{ route('subforums.show', ['subforum' => $subforum]) }}">{{ $subforum->name }}</a>
             </div>
-        </div>
+        @endforeach
     </div>
-    @endsection
-</x-app-layout>
+    
+@endsection
