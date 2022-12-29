@@ -96,8 +96,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subforum $subforum, Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('subforums.show', ['subforum'=>$subforum]);
+        //->with('message', 'Post was deleted.')
     }
 }

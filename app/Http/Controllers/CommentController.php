@@ -36,7 +36,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Subforum $subforum)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'content' => 'required|max:1000',

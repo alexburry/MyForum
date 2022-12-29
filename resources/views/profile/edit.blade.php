@@ -1,4 +1,5 @@
-<x-app-layout>
+@extends('layouts.app')
+@section('tile', 'Edit Profile')
 
     @section('content')
     <x-slot name="header">
@@ -29,4 +30,3 @@
         </div>
     </div>
     @endsection
-</x-app-layout>
