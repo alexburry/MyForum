@@ -73,9 +73,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Subforum $subforum, Post $post)
     {
-        //
+        return view('posts.edit', ['subforum' => $subforum, 'post' => $post]);
     }
 
     /**
@@ -85,9 +85,29 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, Post $post)
+    {  
+        //dd($post);
+        
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:1000',
+            'user_id' => 'required|integer',
+            'subforum_id' => 'required|integer',
+        ]);
+
+        // $post->fill($request->post())->save();
+
+        $affected = DB::table('posts')
+            ->where('id', $post->id)
+            ->update(['title' => $request['title'], 'content' => $request['content']]);
+
+        dd($affected);
+        
+        $affected->save();
+
+        return redirect()->route('subforum.posts.show', ['subforum'=>$post->subforum_id, 'post'=>$post]);
+        
     }
 
     /**

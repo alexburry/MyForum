@@ -43,6 +43,8 @@ Route::get('/f/{subforum}', [SubforumController::class, 'show'])->name('subforum
 // Posts Routes
 Route::get('/f/{subforum}/make-post', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('posts.create');
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/f/{subforum}/edit-post', [PostController::class, 'edit'])->name('posts.edit');
+Route::post('posts/edit', [PostController::class, 'update'])->name('posts.update');
 Route::get('/f/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
 Route::delete('/f/{subforum}/{post}', [PostController::class, 'destroy'])->name('subforum.posts.destroy');
 

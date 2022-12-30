@@ -8,6 +8,10 @@
         <p>{{$post->content}}</p>
     </h2>
 
+    @if ($post->user_id == Auth::id())
+        <a href="{{ route('posts.edit', ['subforum'=>$subforum, 'post'=>$post]) }}">edit post</a>
+    @endif
+
     <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}">Add Comment</a>
     
     <div>
