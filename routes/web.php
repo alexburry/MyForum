@@ -36,16 +36,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Subforum Routes
 Route::get('/f', [SubforumController::class, 'index'])->name('subforums.index');
 Route::get('/f/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
 
+// Posts Routes
 Route::get('/f/{subforum}/make-post', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('posts.create');
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/f/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
 Route::delete('/f/{subforum}/{post}', [PostController::class, 'destroy'])->name('subforum.posts.destroy');
 
+// Comments routes
 Route::get('/f/{subforum}/{post}/make-comment', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comments.create');
 Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/f/{subforum}/{post}/delete-comment', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 require __DIR__.'/auth.php';
 

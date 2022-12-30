@@ -96,8 +96,12 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subforum $subforum, Post $post, Comment $comment)
     {
-        //
+        //dd($comment);
+        //$todelete = Comment::find($comment);
+        $comment->delete();
+
+        return redirect()->route('subforum.posts.show', ['subforum'=>$subforum, 'post'=>$post]);
     }
 }

@@ -15,6 +15,12 @@
         <div class="comment">
             <p>{{ $comment->content }}</p>
             <p>{{ $comment->user->name }}</p>
+            <form method="POST"
+                action="{{ route('comments.destroy', ['subforum'=> $subforum, 'post'=>$post, 'comment'=>$comment]) }}">
+                @csrf 
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
         </div>
         @endforeach
     </div>
