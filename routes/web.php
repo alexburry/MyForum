@@ -43,7 +43,7 @@ Route::get('/f/{subforum}', [SubforumController::class, 'show'])->name('subforum
 // Posts Routes
 Route::get('/f/{subforum}/make-post', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('posts.create');
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/f/{subforum}/edit-post', [PostController::class, 'edit'])->name('posts.edit');
+Route::get('/f/{subforum}/{post}/edit-post', [PostController::class, 'edit'])->name('posts.edit');
 Route::post('posts/edit', [PostController::class, 'update'])->name('posts.update');
 Route::get('/f/{subforum}/{post}', [PostController::class, 'show'])->name('subforum.posts.show');
 Route::delete('/f/{subforum}/{post}', [PostController::class, 'destroy'])->name('subforum.posts.destroy');
@@ -51,7 +51,7 @@ Route::delete('/f/{subforum}/{post}', [PostController::class, 'destroy'])->name(
 // Comments routes
 Route::get('/f/{subforum}/{post}/make-comment', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comments.create');
 Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
-Route::delete('/f/{subforum}/{post}/delete-comment', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::delete('/f/{subforum}/{post}/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 require __DIR__.'/auth.php';
 

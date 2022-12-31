@@ -85,26 +85,29 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {  
+        $post = Post::find($id);
         //dd($post);
         
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required|max:1000',
-            'user_id' => 'required|integer',
-            'subforum_id' => 'required|integer',
         ]);
+
+        $post->title = $request->input('title');
+        $post->title = $request->input('content');
+        $post->update();
 
         // $post->fill($request->post())->save();
 
-        $affected = DB::table('posts')
-            ->where('id', $post->id)
-            ->update(['title' => $request['title'], 'content' => $request['content']]);
+        // $affected = DB::table('posts')
+        //     ->where('id', $post->id)
+        //     ->update(['title' => $request['title'], 'content' => $request['content']]);
 
-        dd($affected);
+        // dd($affected);
         
-        $affected->save();
+        // $affected->save();
 
         return redirect()->route('subforum.posts.show', ['subforum'=>$post->subforum_id, 'post'=>$post]);
         
