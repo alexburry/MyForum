@@ -2,17 +2,17 @@
 @section('title', 'test')
 
 @section('content')
-    <h2>
-        <p>{{ $post->title}}</p>
-        <p>Posted by: {{$post->user->name}}</p>
+    <div class="post">
+        <h1> {{ $post->title}} </h1>
+        <h3> Posted by: {{$post->user->name}} </h3>
         <p>{{$post->content}}</p>
-    </h2>
+    </div>
 
     @if ($post->user_id == Auth::id())
         <a href="{{ route('posts.edit', ['subforum'=>$subforum, 'post'=>$post]) }}">Edit post</a>
     @endif
 
-    <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}">Add Comment</a>
+    <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button>Add Comment</button> </a>
     
     <div>
         @foreach($post->comments as $comment)
@@ -31,7 +31,7 @@
         @endforeach
     </div>
     
-    <a href="{{ route('subforums.show', ['subforum' => $subforum]) }}">Go Back</a>
+    <a href="{{ route('subforums.show', ['subforum' => $subforum]) }}"> <button>Go Back</button> </a>
 
     @if ($post->user_id == Auth::id())
         <form method="POST"

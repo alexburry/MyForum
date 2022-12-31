@@ -42,6 +42,7 @@ class CommentController extends Controller
             'content' => 'required|max:1000',
             'user_id' => 'required|integer',
             'post_id' => 'required|integer',
+            'subforum' => 'required|integer',
         ]);
 
         $p = new Comment;
@@ -53,7 +54,7 @@ class CommentController extends Controller
         session()->flash('message', 'Post was created.');
 
         //return redirect()->route('subforum.posts.show', ['post' => $validatedData['post_id']]);
-        return redirect()->route('subforums.index');
+        return redirect()->route('subforum.posts.show', ['subforum' => $validatedData['subforum'], 'post'=> $validatedData['post_id']]);
     }
 
     /**
