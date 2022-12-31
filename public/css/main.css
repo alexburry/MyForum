@@ -47,4 +47,22 @@ html, body {
     margin: 10px 0;
     padding: 10px;
   }
+
+.input-text-box-title {
+    width: 50%; /* Set the width to 50% of the containing element */
+    height: 30px; /* Set the height to 30 pixels */
+    font-size: 16px; /* Set the font size to 16 pixels */
+    padding: 10px; /* Add some padding to the text box */
+    border: 1px solid black; /* Add a border around the text box */
+    box-sizing: border-box; /* Include the padding and border in the text box's size */
+  }  
+
+  .input-text-area-content {
+    width: 50%; /* Set the width to 50% of the containing element */
+    height: 150px; /* Set the height to 150 pixels */
+    font-size: 16px; /* Set the font size to 16 pixels */
+    padding: 10px; /* Add some padding to the text box */
+    border: 1px solid black; /* Add a border around the text box */
+    box-sizing: border-box; /* Include the padding and border in the text box's size */
+  } 
   

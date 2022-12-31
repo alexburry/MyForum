@@ -52,7 +52,7 @@ class PostController extends Controller
 
         session()->flash('message', 'Post was created.');
 
-        return redirect()->route('subforums.index');
+        return redirect()->route('subforums.show', ['subforum'=> $validatedData['subforum_id']]);
     }
 
     /**
