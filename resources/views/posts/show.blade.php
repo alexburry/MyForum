@@ -9,7 +9,7 @@
     </h2>
 
     @if ($post->user_id == Auth::id())
-        <a href="{{ route('posts.edit', ['subforum'=>$subforum, 'post'=>$post]) }}">edit post</a>
+        <a href="{{ route('posts.edit', ['subforum'=>$subforum, 'post'=>$post]) }}">Edit post</a>
     @endif
 
     <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}">Add Comment</a>

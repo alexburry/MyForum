@@ -2,7 +2,7 @@
     @section('title', 'edit')
     @section('content')
     <div>
-        <form method="POST" action="{{ route('posts.update') }}" class="mt-6 space-y-6">
+        <form method="POST" action="{{ route('posts.update', ['post'=>$post]) }}" class="mt-6 space-y-6">
             @csrf
             <div>
                 <x-input-label for="title" :value="__('Post Title')" />
