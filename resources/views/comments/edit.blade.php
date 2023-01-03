@@ -6,7 +6,7 @@
     <div>
         <form method="POST" action="{{ route('comments.update', ['comment'=>$comment]) }}" class="mt-6 space-y-6">
             @csrf
-            <div><p>Content: <textarea type="text" name="content" class="input-text-area-content"></textarea> </p></div>
+            <div><p>Content: <textarea type="text" name="content" class="input-text-area-content">{{ $comment->content }}</textarea> </p></div>
 
             <div>
                 <input type="hidden" name="user_id"
