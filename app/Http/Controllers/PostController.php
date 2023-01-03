@@ -95,8 +95,8 @@ class PostController extends Controller
             'content' => 'required|max:1000',
         ]);
 
-        $post->title = $request->input('title');
-        $post->title = $request->input('content');
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
         $post->update();
 
         // $post->fill($request->post())->save();

@@ -1,9 +1,10 @@
 @extends('layouts.app')
+@section('title', 'Edit Comment')
     @section('content')
-    <h2>Make comment for {{ $post->title }}</h2>
+    <h2>Edit comment for {{ $post->title }}</h2>
 
     <div>
-        <form method="POST" action="{{ route('comments.store') }}" class="mt-6 space-y-6">
+        <form method="POST" action="{{ route('comments.update', ['comment'=>$comment]) }}" class="mt-6 space-y-6">
             @csrf
             <div><p>Content: <textarea type="text" name="content" class="input-text-area-content"></textarea> </p></div>
 

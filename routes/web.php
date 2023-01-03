@@ -51,6 +51,8 @@ Route::delete('/f/{subforum}/{post}', [PostController::class, 'destroy'])->name(
 // Comments routes
 Route::get('/f/{subforum}/{post}/make-comment', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comments.create');
 Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/f/{subforum}/{post}/{comment}/edit-comment', [CommentController::class, 'edit'])->name('comments.edit');
+Route::post('comments/edit/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::delete('/f/{subforum}/{post}/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 require __DIR__.'/auth.php';

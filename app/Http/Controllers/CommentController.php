@@ -74,9 +74,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Subforum $subforum, Post $post, Comment $comment)
     {
-        //
+        return view ('comments.edit', ['subforum'=>$subforum, 'post'=>$post, 'comment'=>$comment]);
     }
 
     /**
@@ -88,7 +88,18 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::find($id);
+
+        $validatedData = $request->validate([
+            'content' => 'required|max:1000',
+        ]);
+
+        $comment->content = $validatedData['content'];
+        $comment->update();  
+
+        $post = Post::find($comment->post_id);
+
+        return redirect()->route('subforum.posts.show', ['subforum'=>$post->subforum_id, 'post'=>$post]);
     }
 
     /**
