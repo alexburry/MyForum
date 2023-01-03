@@ -3,8 +3,10 @@
 
 @section('content')
     <div class="post">
-        <h1> {{ $post->title}} </h1>
-        <h3> Posted by: {{$post->user->name}} </h3>
+        <h1> {{ $post->title}} </h1>       
+        <h3> 
+            Posted by: <a href="{{ route('profile.show', ['user'=>$post->user]) }}">{{$post->user->name}}</a>
+        </h3>
         <p>{{$post->content}}</p>
     </div>
 
@@ -19,7 +21,7 @@
         @foreach($post->comments as $comment)
         <div class="comment">
             <p>{{ $comment->content }}</p>
-            <p>{{ $comment->user->name }}</p>
+            <p><a href="{{ route('profile.show', ['user'=>$comment->user]) }}">{{ $comment->user->name }}</a></p>
             @if ($comment->user_id == Auth::id())
                 <form method="POST"
                 action="{{ route('comments.destroy', ['subforum'=> $subforum, 'post'=>$post, 'comment'=>$comment]) }}">

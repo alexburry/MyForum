@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/p/{user}', [ProfileController::class, 'show'])->name('profile.show');
+
 // Subforum Routes
 Route::get('/f', [SubforumController::class, 'index'])->name('subforums.index');
 Route::get('/f/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
