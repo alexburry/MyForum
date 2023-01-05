@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="post">
+    <div class="p-4 border border-blue-400 rounded-lg shadow-lg">
         <h1> {{ $post->title}} </h1>       
         <h3> 
             Posted by: <a href="{{ route('profile.show', ['user'=>$post->user]) }}">{{$post->user->name}}</a>
@@ -15,7 +15,7 @@
         <a href="{{ route('posts.edit', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button>Edit post</button></a>
     @endif
 
-    <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button>Add Comment</button> </a>
+    <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
     
     {{-- Comments --}}
     <div>
@@ -47,7 +47,7 @@
         </form>
     @endif
 
-    @if(auth()->check() && auth()->user()->hasRole('mod')) :
+    @if(auth()->check() && auth()->user()->hasRole('mod'))
     <form method="POST"
         action="{{ route('subforum.posts.destroy', ['subforum'=>$subforum, 'post'=>$post]) }}">
         @csrf 
