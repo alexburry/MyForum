@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Subforum;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Role;
+use App\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +24,6 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->hasPosts(5)->create();
         User::factory(10)->hasComments(5)->create();
 
-        $this->call(ModeratorSeeder::class);
+        $this->call(RoleTableSeeder::Class);
     }
 }

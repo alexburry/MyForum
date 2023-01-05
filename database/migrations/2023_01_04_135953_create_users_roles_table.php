@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('moderators', function (Blueprint $table) {
-            $table->id();
+        Schema::create('users_roles', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('role_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')
+                ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->timestamps();
+            $table->primary(['user_id', 'role_id']);
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moderators');
+        Schema::dropIfExists('users_roles');
     }
 };

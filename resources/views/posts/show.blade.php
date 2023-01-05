@@ -2,6 +2,7 @@
 @section('title', 'test')
 
 @section('content')
+
     <div class="post">
         <h1> {{ $post->title}} </h1>       
         <h3> 
@@ -44,6 +45,15 @@
             @method('DELETE')
             <button type="submit">Delete</button>
         </form>
+    @endif
+
+    @if (Auth::id()->hasModerator())
+    <form method="POST"
+        action="{{ route('subforum.posts.destroy', ['subforum'=>$subforum, 'post'=>$post]) }}">
+        @csrf 
+        @method('DELETE')
+        <button type="submit">Mod Delete</button>
+    </form>
     @endif
 
 @endsection
