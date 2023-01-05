@@ -47,7 +47,7 @@
         </form>
     @endif
 
-    @if (Auth::id()->hasModerator())
+    @if(auth()->check() && auth()->user()->hasRole('mod')) :
     <form method="POST"
         action="{{ route('subforum.posts.destroy', ['subforum'=>$subforum, 'post'=>$post]) }}">
         @csrf 
@@ -55,6 +55,7 @@
         <button type="submit">Mod Delete</button>
     </form>
     @endif
+
 
 @endsection
 

@@ -57,10 +57,10 @@ Route::get('/f/{subforum}/{post}/{comment}/edit-comment', [CommentController::cl
 Route::post('comments/edit/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::delete('/f/{subforum}/{post}/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
-Route::group(['middleware' => 'role:developer'], function() {
-    Route::get('/admin', function() {
+Route::group(['middleware' => 'role:mod'], function() {
+    Route::get('/mod', function() {
  
-       return 'Welcome Admin';       
+       return 'Welcome Moderator';       
     });
 });
  
