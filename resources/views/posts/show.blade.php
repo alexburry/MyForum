@@ -2,7 +2,7 @@
 @section('title', 'test')
 
 @section('content')
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+<div class="p-3 bg-sky-300 shadow rounded-lg space-y-4">
     <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
         <h1 class="text-4xl font-bold text-gray-800"> {{ $post->title}} </h1>       
         <h3> 
@@ -11,12 +11,14 @@
         <p class="text-2xl font-semibold text-gray-600">{{$post->content}}</p>
     </div>
 
+    <div>
     @if ($post->user_id == Auth::id())
         <a href="{{ route('posts.edit', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Edit post</button></a>
     @endif
-
-    <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
-    
+    </div>
+    <div>
+        <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
+    </div>
     {{-- Comments --}}
     <div>
         @foreach($post->comments as $comment)
@@ -29,7 +31,7 @@
             </p>
 
             @if ($comment->user_id == Auth::id())
-            <div class="w-1/2 flex justify-start">
+            <div class="w-1/2 flex justify-start space-x-2">
                 <a href="{{ route('comments.edit', ['subforum'=>$subforum, 'post'=>$post, 'comment'=>$comment]) }}"> 
                     <button class="bg-zinc-500 hover:bg-zinc-700 text-white text-sm py-1 px-1 rounded float-left">
                         Edit Comment

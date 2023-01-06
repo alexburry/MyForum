@@ -3,7 +3,8 @@
  
 @section('content')    
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <div class="p-3 bg-sky-300 shadow rounded-lg space-y-4">
+        <h1 class="text-4xl font-bold text-gray-800"> Subforums </h1>    
         @foreach($subforums as $subforum)  
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <a href="{{ route('subforums.show', ['subforum' => $subforum]) }}">

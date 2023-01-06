@@ -4,7 +4,7 @@
 @section('content')
 
 
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+<div class="p-3 bg-sky-300 shadow rounded-lg space-y-4">
     <h1 class="text-4xl font-bold text-gray-800">{{ $subforum->name }}</h1>
     <p class="text-2xl font-semibold text-gray-600">{{ $subforum->about }}</p>
     

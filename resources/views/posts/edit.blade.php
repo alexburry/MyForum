@@ -1,7 +1,7 @@
 @extends('layouts.app')
     @section('title', 'Edit Post')
     @section('content')
-    <div>
+    <div class="p-3 bg-sky-300 shadow rounded-lg space-y-4">
         <form method="POST" action="{{ route('posts.update', ['post'=>$post]) }}" class="mt-6 space-y-6">
             @csrf
             <div>
