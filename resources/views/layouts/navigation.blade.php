@@ -1,12 +1,11 @@
-<nav>
-<div class="nav-bar">
+<nav class="flex items-center justify-between flex-wrap bg-slate-500 p-6 sm:rounded-lg">
     <div>
-        <div>
+        <li class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
             <a href="{{ route('dashboard') }}"" :active="request()->routeIs('dashboard')">Dashboard</a>
-        </div>
-        <div>
+        </li>
+        <li class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
             <a href="{{ route('subforums.index') }}" :active="request()->routeIs('subforums.index')">Subforums</a>
-        </div>
+        </li>
     </div>
 
     <div>
@@ -14,10 +13,10 @@
             @if (Route::has('login'))
                 <div>
                     @auth
-                    <div>
+                    <div class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
                         <a href="{{ route('profile.edit') }}">Profile</a>
                     </div>
-                    <div>
+                    <div class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href={{ route('logout') }} " onclick="event.preventDefault();
@@ -26,15 +25,17 @@
                     </div>
                 </div>
             @else
-                <div>
-                <a href="{{ route('login') }}">Log in</a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif
-                    @endauth
+                <div class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">                   
+                    <a href="{{ route('login') }}">Log in</a>
+                </div>
+
+                <div class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}">Register</a>
+                @endif
+                @endauth
                 </div>
             @endif
         </div>
     </div>
-</div>
 </nav>

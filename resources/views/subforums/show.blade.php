@@ -2,19 +2,47 @@
 @section('title', $subforum->name)
 
 @section('content')
-    <h2>{{ $subforum->name }}</h2>
 
+
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    <h1 class="text-4xl font-bold text-gray-800">{{ $subforum->name }}</h1>
+    <p class="text-2xl font-semibold text-gray-600">{{ $subforum->about }}</p>
+    
     <div>
-        <a href="{{ route('posts.create', ['subforum'=>$subforum]) }}">Create Post</a>
+        <a href="{{ route('posts.create', ['subforum'=>$subforum]) }}">
+            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold 
+                text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 
+                active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition 
+                ease-in-out duration-150">
+                Create Post
+            </button>
+        </a>
     </div>
+  
 
-    <div>
         @foreach($subforum->posts as $post)
-            <div class="post">
-                <a href="{{ route('subforum.posts.show', ['subforum' => $subforum, 'post' => $post]) }}">{{ $post->title }}</a>                   
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <a href="{{ route('subforum.posts.show', ['subforum' => $subforum, 'post' => $post]) }}">
+                    <div class="text-lg font-bold text-blue-900">
+                        {{ $post->title }}
+                    </div>
+                </a> 
+                    <div class="text-lg font-semibold text-gray-600">
+                        Posted by: {{ $post->user->name }}
+                    </div>                               
             </div>
         @endforeach
-    </div>
 
-    <a href="{{ route('subforums.index') }}">Go Back</a>
+
+    <div>
+        <a href="{{ route('subforums.index') }}">
+            <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold 
+            text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 
+            active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition 
+            ease-in-out duration-150">
+                Go Back
+            </button>
+        </a>
+    </div>
+</div>
 @endsection

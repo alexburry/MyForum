@@ -20,7 +20,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
 
     </head> 
-<body>
+<body class="bg-sky-200">
     <header>
         <div class = "nav">
             @include('layouts.navigation')
@@ -28,7 +28,7 @@
     </header>
     
     <main>
-        <div class="bg-violet-500">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             @if ($errors->any())
                 <div>
                     Errors:
