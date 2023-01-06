@@ -8,6 +8,15 @@
         <h3> 
             Posted by: <a href="{{ route('profile.show', ['user'=>$post->user]) }}">{{$post->user->name}}</a>
         </h3>
+        
+        {{-- {{ dd($post->image)}} --}}
+        @if ($post->image()->exists())
+            <img
+                src="{{ asset('images/' . $post->image->image_path) }}"
+                class="w-40 mb-8 shadow-xl"
+                alt="">
+        @endif
+
         <p class="text-2xl font-semibold text-gray-600">{{$post->content}}</p>
     </div>
 
