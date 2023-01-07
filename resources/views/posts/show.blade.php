@@ -82,14 +82,21 @@
         </form>
     @endif
 
-    {{-- @if(auth()->check() && auth()->user()->hasRole('mod'))
+    {{-- {{ dd(auth()->user()->roles == 2); }} --}}
+
+    {{-- @foreach(auth()->user()->roles as $role)
+        <p>Role id: {{$role->id}}</p>
+    @endforeach --}}
+    
+    {{-- @if(auth()->check() && auth()->user()->roles->id == 2) --}}
+    @can('isMod')
     <form method="POST"
         action="{{ route('subforum.posts.destroy', ['subforum'=>$subforum, 'post'=>$post]) }}">
         @csrf 
         @method('DELETE')
         <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit">Mod Delete</button>
     </form>
-    @endif --}}
+    @endcan
 
 </div>
 @endsection
