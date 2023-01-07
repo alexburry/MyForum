@@ -28,6 +28,8 @@
     @endif
     </div>
 
+    @livewire('comments', ['post' => $post, 'comments' => $post->comments])
+
     {{-- Add Comments --}}
     {{-- <div class="my-4 flex">
         <input type="text" class="w-full rounded border shadow p-2 mr-2 my-2" placeholder="Say something nice.">
@@ -35,13 +37,13 @@
             <button class="p-2 bg-blue-500 w-20 rounded shadow text-white">Comment</button>
         </div>
     </div> --}}
-    <div>
+    {{-- <div>
         <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
-    </div>
+    </div> --}}
 
 
     {{-- Comments --}}
-    <div>
+    {{-- <div>
         @foreach($post->comments as $comment)
         <div class="bg-gray-100 rounded-lg p-4 mb-4">
             <p class="text-gray-800 text-base">{{ $comment->content }}</p>
@@ -79,7 +81,7 @@
                 
         </div>
         @endforeach
-    </div>
+    </div> --}}
     
     <a href="{{ route('subforums.show', ['subforum' => $subforum]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Go Back</button> </a>
 

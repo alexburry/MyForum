@@ -2,15 +2,9 @@
 
 @section('title', 'Dashboard')
 @section('content')
-    <h2 >Dashboard</h2>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-sky-500">
-                <div class="p-6 text-gray-900">
-                    {{ __("Welcome to MyForum!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="p-3 bg-sky-300 shadow rounded-lg space-y-4">
+        <h1 class="text-4xl font-bold text-gray-800"> Dashboard </h1> 
+    </div> 
+   @livewire('counter')
 @endsection
 

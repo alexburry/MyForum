@@ -10,7 +10,6 @@
 
     </head> 
 <body class="bg-sky-200">
-    @livewireScripts
 
     <header>
         <div class = "nav">
@@ -35,5 +34,6 @@
             </div>
         </div>
     </main>
+    @livewireScripts
 </body>
 </html>
