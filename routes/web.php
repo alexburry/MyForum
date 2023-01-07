@@ -33,7 +33,9 @@ Route::get('/p/{user}', [ProfileController::class, 'show'])->name('profile.show'
 
 // Subforum Routes
 Route::get('/f', [SubforumController::class, 'index'])->name('subforums.index');
+Route::get('/f/create', [SubforumController::class, 'create'])->middleware(['auth', 'role'])->name('subforums.create');
 Route::get('/f/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
+
 
 // Posts Routes
 Route::get('/f/{subforum}/make-post', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('posts.create');
@@ -49,13 +51,5 @@ Route::post('comments', [CommentController::class, 'store'])->name('comments.sto
 Route::get('/f/{subforum}/{post}/{comment}/edit-comment', [CommentController::class, 'edit'])->name('comments.edit');
 Route::post('comments/edit/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::delete('/f/{subforum}/{post}/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-
-// testing routes - will delete
-Route::controller(ImageController::class)->group(function(){
-    Route::get('/image-upload', 'index')->name('image.form');
-    Route::post('/upload-image', 'store')->name('image.store');
-});
-
-
 
 require __DIR__.'/auth.php';
