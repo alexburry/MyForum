@@ -50,9 +50,9 @@
                     Posted by: {{ $comment->user->name }}
                 </a>
             </p>
-
-            @if ($comment->user_id == Auth::id())
+            
             <div class="w-1/2 flex justify-start space-x-2">
+                @if ($comment->user_id == Auth::id())
                 <a href="{{ route('comments.edit', ['subforum'=>$subforum, 'post'=>$post, 'comment'=>$comment]) }}"> 
                     <button class="bg-zinc-500 hover:bg-zinc-700 text-white text-sm py-1 px-1 rounded float-left">
                         Edit Comment
@@ -65,8 +65,18 @@
                     @method('DELETE')
                     <button class="bg-zinc-500 hover:bg-zinc-700 text-white text-sm py-1 px-1 rounded float-left" type="submit">Delete</button>
                 </form>
+                @endif
+                
+                @can('isMod')
+                <form method="POST"
+                    action="{{ route('comments.destroy', ['subforum'=> $subforum, 'post'=>$post, 'comment'=>$comment]) }}">
+                    @csrf 
+                    @method('DELETE')
+                    <button class="bg-red-500 hover:bg-red-700 text-white text-sm py-1 px-1 rounded float-left" type="submit">Mod Delete</button>
+                </form>
+                @endcan
             </div>  
-            @endif
+                
         </div>
         @endforeach
     </div>
@@ -82,13 +92,6 @@
         </form>
     @endif
 
-    {{-- {{ dd(auth()->user()->roles == 2); }} --}}
-
-    {{-- @foreach(auth()->user()->roles as $role)
-        <p>Role id: {{$role->id}}</p>
-    @endforeach --}}
-    
-    {{-- @if(auth()->check() && auth()->user()->roles->id == 2) --}}
     @can('isMod')
     <form method="POST"
         action="{{ route('subforum.posts.destroy', ['subforum'=>$subforum, 'post'=>$post]) }}">
