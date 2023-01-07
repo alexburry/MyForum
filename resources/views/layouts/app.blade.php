@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang = "{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        
-        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" > --}}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <title>@yield('title')</title>
-
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        {{-- <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
-
-        {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
-        {{-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> --}}
         <script src="https://cdn.tailwindcss.com"></script>
+        @livewireStyles
 
     </head> 
 <body class="bg-sky-200">
+    @livewireScripts
+
     <header>
         <div class = "nav">
             @include('layouts.navigation')
