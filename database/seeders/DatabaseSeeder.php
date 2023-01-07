@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
         Subforum::factory(4)->create();
         User::factory(5)->hasPosts(5)->create();
         User::factory(10)->hasComments(5)->create();
+
+        $this->call(RoleTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }
