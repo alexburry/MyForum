@@ -28,6 +28,30 @@ class Comments extends Component
         $this->comments->push($c);
 
         $this->newComment = "";
+        // dd($this->comments);
+    }
+
+    public function deleteComment(Comment $comment)
+    {
+        // foreach($this->comments as $key => $value ){
+        //     if ($this)
+        // }
+        // dd($this->comments);
+        $key = 0;
+        foreach($this->comments as $value) {
+            if ($value->id == $comment->id) {
+                break;
+            } else {
+                $key=$key+1;
+            }
+        }
+        // dd($key, $this->comments);
+        
+        //dd($keys);
+        $this->comments->forget($key);
+
+        $comment->delete();
+        
     }
 
     public function render()
