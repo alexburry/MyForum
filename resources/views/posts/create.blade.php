@@ -9,7 +9,7 @@
                 <p>Title: </p>
                 <input type="text" class="bg-white focus:outline-none focus:shadow-outline border
                 border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" 
-                    name="title" class="input-text-box-title">                 
+                    name="title">                 
             </div>
             <div>
                 <p>Content:</p> 

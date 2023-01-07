@@ -34,6 +34,7 @@ Route::get('/p/{user}', [ProfileController::class, 'show'])->name('profile.show'
 // Subforum Routes
 Route::get('/f', [SubforumController::class, 'index'])->name('subforums.index');
 Route::get('/f/create', [SubforumController::class, 'create'])->middleware(['auth', 'role'])->name('subforums.create');
+Route::post('subforums', [SubforumController::class, 'store'])->name('subforums.store');
 Route::get('/f/{subforum}', [SubforumController::class, 'show'])->name('subforums.show');
 
 

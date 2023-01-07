@@ -36,7 +36,19 @@ class SubforumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'about' => 'required|max:1000',
+        ]);
+
+        $s = new Subforum;
+        $s->name = $validatedData['name'];
+        $s->about = $validatedData['about'];
+        $s->save();
+
+        session()->flash('message', 'Subforum was created.');
+
+        return redirect()->route('subforums.index');
     }
 
     /**
