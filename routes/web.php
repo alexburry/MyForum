@@ -64,13 +64,6 @@ Route::controller(ImageController::class)->group(function(){
     Route::post('/upload-image', 'store')->name('image.store');
 });
 
-
-Route::group(['middleware' => 'role:mod'], function() {
-    Route::get('/mod', function() {
- 
-       return 'Welcome Moderator';       
-    });
-});
  
 
 require __DIR__.'/auth.php';

@@ -82,14 +82,14 @@
         </form>
     @endif
 
-    @if(auth()->check() && auth()->user()->hasRole('mod'))
+    {{-- @if(auth()->check() && auth()->user()->hasRole('mod'))
     <form method="POST"
         action="{{ route('subforum.posts.destroy', ['subforum'=>$subforum, 'post'=>$post]) }}">
         @csrf 
         @method('DELETE')
         <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit">Mod Delete</button>
     </form>
-    @endif
+    @endif --}}
 
 </div>
 @endsection
