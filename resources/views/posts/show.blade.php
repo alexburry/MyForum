@@ -29,15 +29,15 @@
     </div>
 
     {{-- Add Comments --}}
-    <div class="my-4 flex">
+    {{-- <div class="my-4 flex">
         <input type="text" class="w-full rounded border shadow p-2 mr-2 my-2" placeholder="Say something nice.">
         <div class="py-2">
             <button class="p-2 bg-blue-500 w-20 rounded shadow text-white">Comment</button>
         </div>
-    </div>
-    {{-- <div>
-        <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
     </div> --}}
+    <div>
+        <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
+    </div>
 
 
     {{-- Comments --}}
