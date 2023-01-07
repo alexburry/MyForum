@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->belongsTo(Subforum::class);
     }
+
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
 }

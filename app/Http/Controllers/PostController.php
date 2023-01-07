@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Subforum;
+use App\Models\Image;
 
 class PostController extends Controller
 {
@@ -39,9 +40,12 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required|max:1000',
+            'image' => 'mimes:jpg,png,jpeg|max:5048',
             'user_id' => 'required|integer',
             'subforum_id' => 'required|integer',
         ]);
+
+        // dd($validatedData['title']);
 
         $p = new Post;
         $p->title = $validatedData['title'];
@@ -49,6 +53,22 @@ class PostController extends Controller
         $p->user_id = $validatedData['user_id'];
         $p->subforum_id = $validatedData['subforum_id'];
         $p->save();
+
+        //dd($p);
+
+        if (isset($validatedData['image'])) {
+            $newImageName = time() . '-' . $validatedData['title'] . '.' . $validatedData['image']->extension();
+
+            // dd($newImageName);
+
+            $request->image->move(public_path('images'), $newImageName);
+            
+
+            $i = new Image;
+            $i->image_path = $newImageName;
+            $i->post_id = $p->id;
+            $i->save();
+        }
 
         session()->flash('message', 'Post was created.');
 

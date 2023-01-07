@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubforumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,6 +57,13 @@ Route::post('comments', [CommentController::class, 'store'])->name('comments.sto
 Route::get('/f/{subforum}/{post}/{comment}/edit-comment', [CommentController::class, 'edit'])->name('comments.edit');
 Route::post('comments/edit/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::delete('/f/{subforum}/{post}/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+// testing routes - will delete
+Route::controller(ImageController::class)->group(function(){
+    Route::get('/image-upload', 'index')->name('image.form');
+    Route::post('/upload-image', 'store')->name('image.store');
+});
+
 
 Route::group(['middleware' => 'role:mod'], function() {
     Route::get('/mod', function() {

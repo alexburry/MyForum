@@ -3,11 +3,22 @@
 
 @section('content')
 <div class="p-3 bg-sky-300 shadow rounded-lg space-y-4">
+
+    {{-- Post content --}}
     <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
         <h1 class="text-4xl font-bold text-gray-800"> {{ $post->title}} </h1>       
         <h3> 
             Posted by: <a href="{{ route('profile.show', ['user'=>$post->user]) }}">{{$post->user->name}}</a>
         </h3>
+        
+        
+        @if ($post->image()->exists())
+            <img
+                src="{{ asset('images/' . $post->image->image_path) }}"
+                class="w-40 mb-8 shadow-xl"
+                alt="">
+        @endif
+
         <p class="text-2xl font-semibold text-gray-600">{{$post->content}}</p>
     </div>
 
@@ -16,9 +27,19 @@
         <a href="{{ route('posts.edit', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Edit post</button></a>
     @endif
     </div>
-    <div>
-        <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
+
+    {{-- Add Comments --}}
+    <div class="my-4 flex">
+        <input type="text" class="w-full rounded border shadow p-2 mr-2 my-2" placeholder="Say something nice.">
+        <div class="py-2">
+            <button class="p-2 bg-blue-500 w-20 rounded shadow text-white">Comment</button>
+        </div>
     </div>
+    {{-- <div>
+        <a href="{{ route('comments.create', ['subforum'=>$subforum, 'post'=>$post]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Add Comment</button> </a>
+    </div> --}}
+
+
     {{-- Comments --}}
     <div>
         @foreach($post->comments as $comment)
