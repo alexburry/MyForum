@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'content'];  
+    protected $fillable = ['title', 'content']; 
+    protected $withCount = [
+        'likes',
+    ];
 
     public function comments()
     {
@@ -28,5 +31,10 @@ class Post extends Model
     public function image()
     {
         return $this->hasOne(Image::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(PostLike::class);
     }
 }

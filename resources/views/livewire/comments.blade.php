@@ -9,8 +9,9 @@
     @foreach($comments as $comment)
     <div class="bg-gray-100 rounded-lg p-4 mb-4">
         <p class="text-gray-800 text-base">{{ $comment->content }}</p>
-        <p class = "text-sm font-light text-gray-600">Posted by: {{ $comment->user->name }}</p>
-
+        <a href="{{ route('profile.show', ['user'=>$comment->user]) }}"> 
+            <p class = "text-sm font-light text-gray-600">Posted by: {{ $comment->user->name }}</p>
+        </a>
         {{-- Edit/Delete buttons --}}
         <div class="w-1/2 flex justify-start space-x-2">
             @if ($comment->user_id == Auth::id())
