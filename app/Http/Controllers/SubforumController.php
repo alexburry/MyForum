@@ -25,7 +25,7 @@ class SubforumController extends Controller
      */
     public function create()
     {
-        //
+        return view('subforums.create');
     }
 
     /**

@@ -15,7 +15,18 @@
                 <p>{{$subforum->about}}</p>
             </div>  
         @endforeach
+
+        @can('isAdmin')
+        <div>
+            <a href="{{ route('subforums.create') }}"> 
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Make new subforum
+                </button> 
+            </a>
+        </div>
+        @endcan
     </div>
+
     
     
 @endsection
