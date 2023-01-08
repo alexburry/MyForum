@@ -4,9 +4,13 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Comment;
+use Livewire\WithPagination;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Comments extends Component
 {
+    use WithPagination;
+
     public $post;
     public $comments;
     public $newComment;
@@ -28,34 +32,21 @@ class Comments extends Component
         $this->comments->push($c);
 
         $this->newComment = "";
-        // dd($this->comments);
     }
 
     public function deleteComment(Comment $comment)
     {
-        // foreach($this->comments as $key => $value ){
-        //     if ($this)
-        // }
-        // dd($this->comments);
-        $key = 0;
-        foreach($this->comments as $value) {
-            if ($value->id == $comment->id) {
-                break;
-            } else {
-                $key=$key+1;
-            }
-        }
-        // dd($key, $this->comments);
-        
-        //dd($keys);
-        $this->comments->forget($key);
-
-        $comment->delete();
-        
+        $comment->delete();        
     }
 
     public function render()
     {
-        return view('livewire.comments');
+        $paginated_comments = Comment::where('post_id', '=', $this->post->id)->paginate(7);
+        $this->comments = collect($paginated_comments->items());
+
+        return view('livewire.comments', [
+            'post' => $this->post,
+            'paginated_comments' => $paginated_comments,
+        ]);
     }
 }

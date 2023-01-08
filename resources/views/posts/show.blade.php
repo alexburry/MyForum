@@ -30,7 +30,7 @@
     @endif
     </div>
 
-    @livewire('comments', ['post' => $post, 'comments' => $post->comments])
+    @livewire('comments', ['post' => $post])
     
     <a href="{{ route('subforums.show', ['subforum' => $subforum]) }}"> <button class="bg-zinc-500 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded">Go Back</button> </a>
 
