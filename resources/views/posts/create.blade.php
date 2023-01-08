@@ -9,13 +9,13 @@
                 <p>Title: </p>
                 <input type="text" class="bg-white focus:outline-none focus:shadow-outline border
                 border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" 
-                    name="title">                 
+                    name="title" value="{{ old('title') }}">                 
             </div>
             <div>
                 <p>Content:</p> 
                 <textarea type="text" class="bg-white focus:outline-none focus:shadow-outline border 
                     border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-                    name="content">
+                    name="content" value="{{ old('content') }}">
                 </textarea>      
             </div>
             <div>

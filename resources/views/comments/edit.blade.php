@@ -8,7 +8,7 @@
             @csrf
             <div><p>Content: </p>
                 <textarea type="text" name="content" class="bg-white focus:outline-none focus:shadow-outline border
-                border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal">{{ $post->content }} 
+                border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal">{{ $comment->content }} 
                 </textarea>
             </div>
             <div>
