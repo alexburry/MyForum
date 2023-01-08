@@ -14,7 +14,10 @@
                 <div>
                     @auth
                     <div class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
-                        <a href="{{ route('profile.edit') }}">Profile</a>
+                        <a href="{{ route('profile.show', ['user'=>Auth::user()]) }}">{{ Auth::user()->name }}</a>
+                    </div>
+                    <div class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+                        <a href="{{ route('profile.edit') }}">Edit Profile</a>
                     </div>
                     <div class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
                         <form method="POST" action="{{ route('logout') }}">
