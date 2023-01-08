@@ -27,10 +27,10 @@ class Like extends Component
 
             $this->count++;           
         }
-           
+        $this->emit('likeChanged');
     }
 
-    public function notLiked() 
+    protected function notLiked() 
     {
         $userLikes = auth()->user()->likes;
         foreach($userLikes as $userLike) {
